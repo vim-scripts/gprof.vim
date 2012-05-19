@@ -1,0 +1,63 @@
+*ft_gprof.txt*  A plugin for gprof output Files
+
+Author:    Dominique Pelle <dominique.pelle@gmail.com>
+Version:   0.1, 2012/05/19
+Copyright: (c) 2012 by Dominique Pelle
+           The VIM LICENSE applies.
+           (see |copyright|) except use gprof instead of "Vim".
+	   NO WARRANTY, EXPRESS OR IMPLIED.  USE AT-YOUR-OWN-RISK.
+
+This is a filetype plugin for gprof output files (gnu profiler).
+It provides a mapping to facilitate navigation in gprof files as well
+as syntax highlighting of gprof output.
+
+                                                *gprof-toc*
+1. Installation.................................|gprof-installation|
+2. Usage........................................|gprof-usage|
+
+==============================================================================
+1. Installation					*gprof-installation*
+
+Install the plugin with:
+
+  $ mkdir ~/.vim
+  $ cd ~/.vim
+  $ unzip /path-to/ft-gprof.zip
+  $ vim -c 'helptags ~/.vim/doc'
+
+==============================================================================
+2. Usage					*gprof-usage*
+
+Gprof output files have no specific extension. To recognize the file type,
+you will need to explicitly set the file type with the Ex command
+":set filetype gprof".  For example, to look at the gprof output when
+profiling Vim, you can use: >
+
+  $ gprof vim gmon.out | vim - -c 'setfiletype gprof'
+
+Alternatively, you can also add the following lines into your
+$VIMRUNTIME/scripts.vim to automatically recognize the gprof file type
+when reading from stdin: >
+
+   " Gprof (gnu profiler)
+   elseif s:line1 == 'Flat profile:' 
+   \   && s:line2 == '' 
+   \   && s:line3 =~ '^Each sample counts as .* seconds.$'
+     set ft=gprof
+ 
+Vim should then figure the gprof file type automatically when using: >
+
+  $ gprof vim gmon.out | vim -
+
+Gprof output contains a flat profile section and a call graph section.
+Analyzing the output of gprof often requires jumping back in forth in
+the gprof output. This can be cumbersome. The plugin makes it easier.
+When the cursor is located in a line in the gprof flat profile or in a
+line in the call graph, pressing CTRL-] jumps to the corresponding
+function in the call graph.
+
+For further information about the GNU profiler, see:
+
+  ftp://ftp.gnu.org/old-gnu/Manuals/gprof-2.9.1/html_mono/gprof.html
+
+vim:tw=78:ts=8:ft=help:norl:

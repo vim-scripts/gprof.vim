@@ -1,0 +1,25 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=4077
+
+This is a filetype plugin for gprof output files (GNU profiler). It provides a mapping to facilitate navigation in gprof files as well as syntax highlighting of gprof output.
+
+Gprof output files have no specific extension. To recognize the file type, you will need to explicitly set the file type with the Ex command ":set filetype gprof".  For example, to look at the gprof output when profiling Vim, you can use: >
+
+  $ gprof vim gmon.out | vim - -c 'setfiletype gprof'
+
+Alternatively, you can also add the following lines into your $VIMRUNTIME/scripts.vim to automatically recognize the gprof file type when reading from stdin: >
+
+   " Gprof (gnu profiler)
+   elseif s:line1 == 'Flat profile:' 
+   \   && s:line2 == '' 
+   \   && s:line3 =~ '^Each sample counts as .* seconds.$'
+     set ft=gprof
+ 
+Vim should then figure the gprof file type automatically when using: >
+
+  $ gprof vim gmon.out | vim -
+
+Gprof output contains a flat profile section and a call graph section. Analyzing the output of gprof often requires jumping back in forth in the gprof output. This can be cumbersome. The plugin makes it easier. When the cursor is located in a line in the gprof flat profile or in a line in the call graph, pressing CTRL-] jumps to the corresponding function in the call graph. The jump is remembered in the jumplist so pressing CTRL-I jumps back to the position prior to pressing CTRL-].
+
+For further information about the GNU profiler, see:
+
+  ftp://ftp.gnu.org/old-gnu/Manuals/gprof-2.9.1/html_mono/gprof.html
