@@ -11,45 +11,63 @@ let s:keepcpo= &cpo
 set cpo&vim
 
 syn case match
-syn sync minlines=50
+syn sync fromstart
 
-syn match gprofFlatProfileTitle "^Flat profile:$"
+" Flat profile
+syn region gprofFlatProfile
+  \ start="^Flat profile:$"
+  \ end="^$"
+  \ contains=gprofFlatProfileTitle,gprofFlatProfileHeader,gprofFlatProfileTrailer
+syn match gprofFlatProfileTitle
+  \ "^Flat profile:$" 
+  \ contained
 syn region gprofFlatProfileHeader 
   \ start="^Each sample counts as.*"
   \ end="^ time.*name\s*$"
-syn match gprofFlatProfile "^\s\+[0-9.]\+\s\+[0-9.]\+\s\+[0-9.]\+\s\+\(\d\+\s\+[0-9.]\+\s\+[0-9.]\+\s\+\)\=" 
+  \ contained
 syn region gprofFlatProfileTrailer
   \ start="^\s*%\s\+the percentage of the total running time.*"
   \ end="^\s*the gprof listing if it were to be printed\."
+  \ contained
 
-syn match gprofCallGraphTitle "^\s\+Call graph (explanation follows)"
+" Call graph
+syn region gprofCallGraph
+  \ start="^\s*Call graph (explanation follows)$"
+  \ end="^$"
+  \ contains=gprofCallGraphTitle,gprofCallGraphHeader,gprofCallGraphFunction,gprofCallGraphSeparator,gprofCallGraphTrailer,gprofFunctionIndex
+syn match gprofCallGraphTitle 
+  \ "^\s\+Call graph (explanation follows)"
+  \ contained
 syn region gprofCallGraphHeader
   \ start="^granularity: each sample hit covers.*"
   \ end="^\s*index % time\s\+self\s\+children\s\+called\s\+name$"
-syn match gprofCallGraphFunction "\s\+[0-9.]\+[0-9\.]\+\s\+[^\[]*\ze\["
-syn match gprofCallGraphCallerCallee "^\s\+[0-9.]\+\s\+[0-9.]\+\s\+[0-9/]\+\s\+"
-syn match gprofCallGraphCallerCallee "^\s\+[0-9]\+\s\+"
-syn match gprofCallGraphSeparator "^-----------------------------------------------"
+  \ contained
+syn match gprofCallGraphFunction "\s\+\([0-9.]\+\s\+\)\{3}\d\+\s\+.*" contained
+syn match gprofCallGraphSeparator "^-\+$" contained
 syn region gprofCallGraphTrailer
   \ start="This table describes the call tree of the program"
   \ end="^\s*the cycle.$"
+  \ contained
 
-syn match gprofIndexFunctionTitle "^Index by function name$"
-syn match gprofFunctionIndex "\[\d\+\]"
-syn match gprofSpecial "<\(spontaneous\|cycle \d\+\)>"
+" Index
+syn region gprofIndex
+  \ start="^Index by function name$"
+  \ end="\%$"
+  \ contains=gprofIndexFunctionTitle,gprofFunctionIndex
+
+syn match gprofIndexFunctionTitle "^Index by function name$" contained
+syn match gprofFunctionIndex "\[\d\+\]" contained
+syn match gprofSpecial "<\(spontaneous\|cycle \d\+\)>" contained
 
 hi def link gprofFlatProfileTitle      Title
 hi def link gprofFlatProfileHeader     Comment
-hi def link gprofFlatProfile           Number
 hi def link gprofFlatProfileTrailer    Comment
 
 hi def link gprofCallGraphTitle        Title
 hi def link gprofCallGraphHeader       Comment
-hi def link gprofCallGraphCallers      ProProc
 hi def link gprofCallGraphFunction     Special
-hi def link gprofCallGraphCallerCallee Number
 hi def link gprofCallGraphTrailer      Comment
-hi def link gprofCallGraphSeparator    Normal
+hi def link gprofCallGraphSeparator    Label
 
 hi def link gprofFunctionIndex         Label
 hi def link gprofSpecial               SpecialKey

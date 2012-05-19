@@ -1,7 +1,7 @@
 *ft_gprof.txt*  A plugin for gprof output Files
 
 Author:    Dominique Pelle <dominique.pelle@gmail.com>
-Version:   0.1, 2012/05/19
+Version:   0.2, 2012/05/20
 Copyright: (c) 2012 by Dominique Pelle
            The VIM LICENSE applies.
            (see |copyright|) except use gprof instead of "Vim".
@@ -22,7 +22,7 @@ Install the plugin with:
 
   $ mkdir ~/.vim
   $ cd ~/.vim
-  $ unzip /path-to/ft-gprof.zip
+  $ unzip /path-to/ft_gprof.zip
   $ vim -c 'helptags ~/.vim/doc'
 
 ==============================================================================
@@ -54,7 +54,8 @@ Analyzing the output of gprof often requires jumping back in forth in
 the gprof output. This can be cumbersome. The plugin makes it easier.
 When the cursor is located in a line in the gprof flat profile or in a
 line in the call graph, pressing CTRL-] jumps to the corresponding
-function in the call graph.
+function in the call graph. The jump is remembered in the jumplist
+so pressing CTRL-I jumps back to the position prior to pressing CTRL-].
 
 For further information about the GNU profiler, see:
 

@@ -14,10 +14,12 @@ function <SID>GprofJumpToFunctionIndex()
   let l:line = getline('.')
   if l:line =~ '[\d\+\]$'
     " We're in a line in the call graph.
-    exe "norm $yT[G?^\\[\<C-R>\"\\]\<CR>"
-  elseif l:line =~ '^\s\+[0-9\.]\+\s\+[0-9\.]\+\s\+[0-9\.]\+\s\+'
+    norm $y%
+    call search('^' . escape(@", '[]'), 'sw')
+  elseif l:line =~ '^\(\s\+[0-9\.]\+\)\{3}\s\+'
     " We're in line in the flat profile.
-    exe "norm $vT yG?^\\[\\d\\+\\].*\<C-R>\" \\(<[^>]*> \\)*\\[\\d\\+\\]$\<CR>"
+    norm 55|y$
+    call search('^\[\d\+\].*\d\s\+' .  escape(@", '[]*.'), 'sW')
   endif
 endfunction
 
