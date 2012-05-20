@@ -7,7 +7,7 @@ Copyright: (c) 2012 by Dominique Pelle
            (see |copyright|) except use gprof instead of "Vim".
 	   NO WARRANTY, EXPRESS OR IMPLIED.  USE AT-YOUR-OWN-RISK.
 
-This is a filetype plugin for gprof output files (gnu profiler).
+This is a filetype plugin for the gprof output files (gnu profiler).
 It provides a mapping to facilitate navigation in gprof files as well
 as syntax highlighting of gprof output.
 

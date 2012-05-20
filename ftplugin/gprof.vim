@@ -4,13 +4,12 @@
 
 " When cursor is on one line of the gprof call graph,
 " calling this function jumps to this function in the call graph.
-"
 if exists("b:did_ftplugin")
   finish
 endif
 let b:did_ftplugin=1
 
-function <SID>GprofJumpToFunctionIndex()
+fun! <SID>GprofJumpToFunctionIndex()
   let l:line = getline('.')
   if l:line =~ '[\d\+\]$'
     " We're in a line in the call graph.
@@ -21,7 +20,7 @@ function <SID>GprofJumpToFunctionIndex()
     norm 55|y$
     call search('^\[\d\+\].*\d\s\+' .  escape(@", '[]*.'), 'sW')
   endif
-endfunction
+endfun
 
 " Pressing <C-]> on a line in the gprof flat profile or in
 " the call graph, jumps to the corresponding function inside
