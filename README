@@ -2,7 +2,10 @@ This is a mirror of http://www.vim.org/scripts/script.php?script_id=4077
 
 This is a filetype plugin for gprof output files (GNU profiler). It provides a mapping to facilitate navigation in gprof files as well as syntax highlighting of gprof output.
 
-Gprof output files have no specific extension. To recognize the file type, you will need to explicitly set the file type with the Ex command ":set filetype gprof".  For example, to look at the gprof output when profiling Vim, you can use: >
+Screencast demo: http://shelr.tv/records/4fb8d6739660807d3d00000a
+Screenshot: http://dominique.pelle.free.fr/pic/ft_gprof.png
+
+Gprof output files have no specific extension. To recognize the file type, you will need to explicitly set the file type with the Ex command ":set filetype gprof".  For example, to look at the gprof output when profiling Vim, you can use:
 
   $ gprof vim gmon.out | vim - -c 'setfiletype gprof'
 
@@ -14,7 +17,7 @@ Alternatively, you can also add the following lines into your $VIMRUNTIME/script
    \   && s:line3 =~ '^Each sample counts as .* seconds.$'
      set ft=gprof
  
-Vim should then figure the gprof file type automatically when using: >
+Vim should then figure the gprof file type automatically when using:
 
   $ gprof vim gmon.out | vim -
 

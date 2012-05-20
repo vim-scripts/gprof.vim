@@ -1,6 +1,6 @@
 " Language:    gprof
 " Maintainer:  Dominique Pelle <dominique.pelle@gmail.com>
-" Last Change: 2012 May 19
+" Last Change: 2012 May 20
 
 " When cursor is on one line of the gprof call graph,
 " calling this function jumps to this function in the call graph.
@@ -15,10 +15,12 @@ fun! <SID>GprofJumpToFunctionIndex()
     " We're in a line in the call graph.
     norm $y%
     call search('^' . escape(@", '[]'), 'sw')
+    norm zz
   elseif l:line =~ '^\(\s\+[0-9\.]\+\)\{3}\s\+'
     " We're in line in the flat profile.
     norm 55|y$
     call search('^\[\d\+\].*\d\s\+' .  escape(@", '[]*.'), 'sW')
+    norm zz
   endif
 endfun
 

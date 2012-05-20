@@ -1,7 +1,7 @@
 *ft_gprof.txt*  A plugin for gprof output Files
 
 Author:    Dominique Pelle <dominique.pelle@gmail.com>
-Version:   0.2, 2012/05/20
+Version:   0.4, 2012/05/20
 Copyright: (c) 2012 by Dominique Pelle
            The VIM LICENSE applies.
            (see |copyright|) except use gprof instead of "Vim".
@@ -13,6 +13,7 @@ as syntax highlighting of gprof output.
 
                                                 *gprof-toc*
 1. Installation.................................|gprof-installation|
+2. Demo.........................................|gprof-demo|
 2. Usage........................................|gprof-usage|
 
 ==============================================================================
@@ -26,7 +27,14 @@ Install the plugin with:
   $ vim -c 'helptags ~/.vim/doc'
 
 ==============================================================================
-2. Usage					*gprof-usage*
+2. Demo        					*gprof-demo*
+
+See a demo of the plugin in action:
+
+  http://shelr.tv/records/4fb8d6739660807d3d00000a
+
+==============================================================================
+3. Usage					*gprof-usage*
 
 Gprof output files have no specific extension. To recognize the file type,
 you will need to explicitly set the file type with the Ex command

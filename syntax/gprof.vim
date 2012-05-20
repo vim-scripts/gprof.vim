@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Syntax for Gprof Output
 " Maintainer: Dominique Pelle <dominique.pelle@gmail.com>
-" Last Change: 2012 May 18
+" Last Change: 2012 May 20
 
 " Quit when a syntax file was already loaded
 if exists("b:current_syntax")
